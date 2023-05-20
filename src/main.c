@@ -43,16 +43,16 @@ void health_check(struct health_check_args *args)
 
 void ask_exit(struct ask_exit_args *args)
 {
-    char input_str[10];
+    char input_str[30];
     char exit_str[] = "EXT";
     while(1)
     {
-        printf("Enter '%s' to exit.\n", exit_str);
-        scanf("%s", input_str);
+        printf("You can print any message.\n");
+        printf("Print '%s' to exit.\n", exit_str);
+        scanf("%[^\n]%*c", input_str);
+        printf("You have printed: %s\n", input_str);
         if (!strcmp(input_str, exit_str))
             break;
-        else
-            printf("Unknown input. Try again\n");
     }
     args->state->exit_flag = true;
 }
